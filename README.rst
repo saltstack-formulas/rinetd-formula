@@ -33,7 +33,14 @@ Installs the package and manages the service.
 
 Configures ``rinetd`` and restarts the service (if necessary).
 
+``rinetd.remove``
+-----------------
+
+* Stops the service.
+* Removes the package.
+* Deletes the config.
+
 TODO
-----
+====
 
 * Handle logging.
