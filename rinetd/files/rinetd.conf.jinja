@@ -1,0 +1,8 @@
+# MANAGED VIA SALT
+# DO NOT EDIT
+
+# bindadress    bindport  connectaddress  connectport
+{% for title, redirect in salt['pillar.get']('rinetd:redirections', {}).items() %}
+# {{ title }}
+{{ redirect.get('local', grains['ipv4'][0]) }} {{ redirect.port }} {{ redirect.remote }} {{ redirect.get('remote_port', redirect.port) }}
+{%- endfor %}

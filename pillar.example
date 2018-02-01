@@ -1,0 +1,11 @@
+rinetd:
+  lookup:
+    package: rinetd
+    service: rinetd
+    config_file: /etc/rinetd.conf
+  redirections:
+    useful description:
+      local: 192.168.0.1  # defaults to the first entry of grains['ipv4']; may be omitted
+      port: 443  # the port to redirect
+      remote: 1.2.3.4  # the remote IP address to redirect to
+      remote_port: 443  # the port to redirect _to_; defaults to the (local) lort; may be omitted

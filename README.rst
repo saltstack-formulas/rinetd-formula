@@ -32,3 +32,8 @@ Installs the package and manages the service.
 -----------------
 
 Configures ``rinetd`` and restarts the service (if necessary).
+
+TODO
+----
+
+* Handle logging.
