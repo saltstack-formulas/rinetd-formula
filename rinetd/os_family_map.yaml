@@ -1,0 +1,4 @@
+Debian: {}
+FreeBSD:
+  config_file: /usr/local/etc/rinetd.conf
+
