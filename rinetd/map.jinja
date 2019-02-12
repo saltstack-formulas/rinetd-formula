@@ -1,12 +1,8 @@
 {% import_yaml "rinetd/defaults.yaml" as defaults %}
-{% set os_family_map = salt['grains.filter_by']({
-    'Debian': {
-    },
-    'FreeBSD': {
-        'config_file': '/usr/local/etc/rinetd.conf',
-    },
-}, grain='os_family', default='Debian') %}
-{% set defaults = salt['defaults.merge'](defaults, os_family_map) %}
-{% set rinetd = salt['pillar.get']('rinetd') %}
-{% set defaults = salt['defaults.merge'](defaults, rinetd.get('lookup', {})) %}
-{% set rinetd = salt['defaults.merge'](defaults, rinetd) %}
+{% import_yaml "rinetd/os_family_map.yaml" as os_family_map %}
+
+{# get the settings for the os_family grain, merge it into defaults #}
+{% set osfam = salt['grains.filter_by'](os_family_map, grain='os_family', merge=defaults) %}
+
+{# Load Pillar data; merge it recursively into osfam #}
+{% set rinetd = salt['pillar.get']('rinetd:lookup', default=osfam, merge=True) %}
